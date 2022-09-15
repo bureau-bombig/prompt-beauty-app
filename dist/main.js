@@ -1,1 +1,1 @@
-console.log("Hello World"),console.log(10);
+(()=>{"use strict";"https://prompt.beauty/post-image/"===top.location.pathname.toString()&&async function(){document.querySelector("#bb_image"),document.querySelector("#bb_title"),document.querySelector("#bb_title_is_prompt"),document.querySelector("#bb_model"),document.querySelector("#bb_description"),document.querySelector("#bb_submit").addEventListener("click",(async function(){console.log("Sending image...")}))}()})();
