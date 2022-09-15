@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 22
-          local-dir: dist
+          local-dir: dist/
 # name: FTP Test
 # on:
 #   push:
