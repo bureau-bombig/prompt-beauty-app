@@ -7,7 +7,7 @@ async function postImage() {
   const submit = document.querySelector("#bb_submit");
   submit.addEventListener("click", sendImage);
 
-  console.log(image, title, titleIsPrompt, model, description, submit);
+  console.log("Formelements: ", image, title, titleIsPrompt, model, description, submit);
 
   async function sendImage() {
     console.log("Sending image...");
