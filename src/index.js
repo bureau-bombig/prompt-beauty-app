@@ -1,7 +1,7 @@
 import postImage from "./modules/postImage.js";
 console.log("Welcome to Prompt Beauty");
 
-onDOMContentLoaded = (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
   // Post Image Script
   if (top.location.pathname.toString() === "/post-image/") {
     console.log("Post Image page detected");
@@ -16,4 +16,4 @@ onDOMContentLoaded = (event) => {
 
   // Post Resource Script
   // ...
-};
+});
