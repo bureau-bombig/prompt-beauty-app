@@ -86,7 +86,7 @@ async function postImage() {
       window.location.href = data.link;
     } else {
       console.log("Error", data);
-      Notiflix.Notify.Failure("Error");
+      Notiflix.Notify.failure("Something went wrong in the state of Denmark");
     }
   }
 }
