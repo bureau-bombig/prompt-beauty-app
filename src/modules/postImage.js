@@ -47,6 +47,9 @@ async function postImage() {
       imageError.textContent = error;
       return;
     }
+    {
+      imageError.textContent = "";
+    }
 
     // Render Preview
     preview.src = URL.createObjectURL(file);
