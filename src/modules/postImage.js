@@ -1,12 +1,19 @@
 import Notiflix from "notiflix";
+import validator from "validator";
+import "./utils/validateImage.js";
 
 async function postImage() {
   const image = document.querySelector("#bb_image");
+  const imageError = document.querySelector("#bb_image_error");
   const preview = document.querySelector("#bb_preview_image");
   const title = document.querySelector("#bb_title");
+  const titleError = document.querySelector("#bb_title_error");
   const titleIsPrompt = document.querySelector("#bb_title_is_prompt");
+  const titleIsPromptError = document.querySelector("#bb_title_is_prompt_error");
   const model = document.querySelector("#bb_model");
+  const modelError = document.querySelector("#bb_model_error");
   const description = document.querySelector("#bb_description");
+  const descriptionError = document.querySelector("#bb_description_error");
   const submit = document.querySelector("#bb_submit");
 
   // Set Preview Image on File Input change
@@ -26,6 +33,20 @@ async function postImage() {
   submit.addEventListener("click", uploadImage);
 
   // Validate Form
+
+  image.addEventListener("change", async () => {
+    const isImage = validateImage(image.files[0]);
+
+    if (!isImage) {
+      imageError.textContent = "Your File has to be an Image in PNG, JPG or JPEG Format.";
+      image.value = "";
+    }
+  });
+
+  //title.addEventListener("change", validateForm);
+  //titleIsPrompt.addEventListener("change", validateForm);
+  //model.addEventListener("change", validateForm);
+  //description.addEventListener("change", validateForm);
 
   // Upload Image to Wordpress
   async function uploadImage() {
@@ -49,7 +70,7 @@ async function postImage() {
       sendData(data.id);
     } else {
       console.log("error", data);
-      Notiflix.Notify.failure("Something went wrong in the state of Denmark");
+      Notiflix.Notify.failure("Something is rotten in the state of Denmark");
     }
   }
 
@@ -91,7 +112,7 @@ async function postImage() {
       window.location.href = data.link;
     } else {
       console.log("Error", data);
-      Notiflix.Notify.failure("Something went wrong in the state of Denmark");
+      Notiflix.Notify.failure("Something is rotten in the state of Denmark");
     }
   }
 }
