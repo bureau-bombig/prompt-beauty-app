@@ -1,6 +1,6 @@
 import Notiflix from "notiflix";
 import validator from "validator";
-import validateImage from "./utils/validateImage.js";
+import isImage from "./utils/isImage.js";
 
 async function postImage() {
   const image = document.querySelector("#bb_image");
@@ -16,34 +16,42 @@ async function postImage() {
   const descriptionError = document.querySelector("#bb_error_description");
   const submit = document.querySelector("#bb_submit");
 
-  // Set Preview Image on File Input change
+  // Validate Image Input and if okay render Preview
   image.addEventListener("change", (event) => {
     const file = event.target.files[0];
 
-    if (!file) {
+    function cleanPreview() {
       preview.src = "";
       preview.style.display = "none";
+    }
+
+    let error = false;
+
+    // Check File exists
+    if (!file) {
+      cleanPreview();
+      error = "Please, select an image.";
+    }
+
+    // Check File is an Image
+    if (!isImage() && error === false) {
+      cleanPreview();
+      error = "Your File has to be an Image in PNG, JPG or JPEG Format.";
+    }
+
+    // Check File is less than 5MB
+
+    if (error) {
+      imageError.textContent = error;
       return;
     }
 
+    // Render Preview
     preview.src = URL.createObjectURL(file);
     preview.style.display = "block";
   });
 
   submit.addEventListener("click", uploadImage);
-
-  // Validate Form
-  console.log("Start Form Validation");
-  image.addEventListener("change", async () => {
-    console.log("change!");
-    const isImage = await validateImage(image.files[0]);
-    console.log(isImage);
-    if (!isImage) {
-      console.log("is no image!");
-      imageError.textContent = "Your File has to be an Image in PNG, JPG or JPEG Format.";
-      image.value = "";
-    }
-  });
 
   //title.addEventListener("change", validateForm);
   //titleIsPrompt.addEventListener("change", validateForm);
