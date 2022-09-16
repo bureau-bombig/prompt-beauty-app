@@ -1,7 +1,8 @@
 import postImage from "./modules/postImage.js";
 
-print("top.location.pathname: " + top.location.pathname);
+console.log("Welcome to Prompt Beauty");
 
-if (top.location.pathname.toString() === "https://prompt.beauty/post-image/") {
+if (top.location.pathname.toString() === "/post-image/") {
+  console.log("Post Image page detected");
   postImage();
 }
