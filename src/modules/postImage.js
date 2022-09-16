@@ -35,9 +35,11 @@ async function postImage() {
   // Validate Form
 
   image.addEventListener("change", async () => {
+    console.log("change!");
     const isImage = validateImage(image.files[0]);
 
     if (!isImage) {
+      console.log("is no image!");
       imageError.textContent = "Your File has to be an Image in PNG, JPG or JPEG Format.";
       image.value = "";
     }
@@ -76,8 +78,6 @@ async function postImage() {
 
   // Send Data to Wordpress with Image Id from previous functions
   async function sendData(imageId) {
-    console.log("imageId", imageId);
-    console.log("typeof imageId", typeof imageId);
     const url = wp_api_settings.root + "wp/v2/images/";
     const formData = {
       // Formdata
