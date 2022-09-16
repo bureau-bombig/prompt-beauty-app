@@ -36,7 +36,7 @@ async function postImage() {
   console.log("Start Form Validation");
   image.addEventListener("change", async () => {
     console.log("change!");
-    const isImage = validateImage(image.files[0]);
+    const isImage = await validateImage(image.files[0]);
     console.log(isImage);
     if (!isImage) {
       console.log("is no image!");
