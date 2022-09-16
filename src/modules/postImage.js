@@ -4,16 +4,16 @@ import validateImage from "./utils/validateImage.js";
 
 async function postImage() {
   const image = document.querySelector("#bb_image");
-  const imageError = document.querySelector("#bb_image_error");
+  const imageError = document.querySelector("#bb_error_image");
   const preview = document.querySelector("#bb_preview_image");
   const title = document.querySelector("#bb_title");
-  const titleError = document.querySelector("#bb_title_error");
+  const titleError = document.querySelector("#bb_error_title");
   const titleIsPrompt = document.querySelector("#bb_title_is_prompt");
-  const titleIsPromptError = document.querySelector("#bb_title_is_prompt_error");
+  const titleIsPromptError = document.querySelector("#bb_error_title_is_prompt");
   const model = document.querySelector("#bb_model");
-  const modelError = document.querySelector("#bb_model_error");
+  const modelError = document.querySelector("#bb_error_model");
   const description = document.querySelector("#bb_description");
-  const descriptionError = document.querySelector("#bb_description_error");
+  const descriptionError = document.querySelector("#bb_error_description");
   const submit = document.querySelector("#bb_submit");
 
   // Set Preview Image on File Input change
