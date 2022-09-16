@@ -1,3 +1,5 @@
+import Notiflix from "notiflix";
+
 async function postImage() {
   const image = document.querySelector("#bb_image");
   const preview = document.querySelector("#bb_preview_image");
@@ -84,6 +86,7 @@ async function postImage() {
       window.location.href = data.link;
     } else {
       console.log("Error", data);
+      Notiflix.Notify.Failure("Error");
     }
   }
 }
