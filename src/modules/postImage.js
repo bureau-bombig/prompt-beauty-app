@@ -34,8 +34,12 @@ async function postImage() {
       console.log(error);
     }
 
+    console.log("error before isImage()", error);
+    console.log("file before isImage()", file);
+    console.log("isImage(file)", isImage(file));
+
     // Check File is an Image
-    if (!isImage() && error === false) {
+    if (!isImage(file) && error === false) {
       cleanPreview();
       error = "Your File has to be an Image in PNG, JPG or JPEG Format.";
       console.log(error);
