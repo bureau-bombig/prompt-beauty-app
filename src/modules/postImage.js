@@ -51,7 +51,7 @@ async function postImage() {
     console.log("imageId", imageId);
     console.log("typeof imageId", typeof imageId);
     const url = wp_api_settings.root + "wp/v2/images/";
-    formData = {
+    const formData = {
       // Formdata
       title: title.value,
       featured_media: imageId,
