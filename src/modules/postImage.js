@@ -79,14 +79,13 @@ async function postImage() {
     };
     const response = await fetch(url, request);
     const data = await response.json();
-    const link = data.link;
 
-    if (!link) {
+    if (!data.link) {
       // Error Handling
       console.log("Error", data);
     }
 
-    window.location.href = link;
+    window.location.href = data.link;
   }
 }
 
