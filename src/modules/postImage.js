@@ -83,6 +83,7 @@ async function postImage() {
     if (!data.link) {
       // Error Handling
       console.log("Error", data);
+      return;
     }
 
     window.location.href = data.link;
