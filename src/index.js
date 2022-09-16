@@ -5,13 +5,9 @@ Notiflix.Notify.init({
   distance: "20px",
   zindex: 999999,
   fontFamily: "Inter",
-  closeButton: true,
   useGoogleFont: false,
   borderRadius: "10px",
   useFontAwesome: false,
-  cssAnimation: true,
-  cssAnimationDuration: 400,
-  cssAnimationStyle: "fade",
 });
 
 window.addEventListener("DOMContentLoaded", (event) => {
