@@ -37,7 +37,7 @@ async function postImage() {
   image.addEventListener("change", async () => {
     console.log("change!");
     const isImage = validateImage(image.files[0]);
-
+    console.log(isImage);
     if (!isImage) {
       console.log("is no image!");
       imageError.textContent = "Your File has to be an Image in PNG, JPG or JPEG Format.";
