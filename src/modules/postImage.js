@@ -1,6 +1,6 @@
 import Notiflix from "notiflix";
 import validator from "validator";
-import "./utils/validateImage.js";
+import validateImage from "./utils/validateImage.js";
 
 async function postImage() {
   const image = document.querySelector("#bb_image");
@@ -33,7 +33,7 @@ async function postImage() {
   submit.addEventListener("click", uploadImage);
 
   // Validate Form
-
+  console.log("Start Form Validation");
   image.addEventListener("change", async () => {
     console.log("change!");
     const isImage = validateImage(image.files[0]);
