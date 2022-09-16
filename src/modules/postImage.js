@@ -44,8 +44,13 @@ async function postImage() {
       body: formData,
     };
     const response = await fetch(url, request);
-    const { id } = await response.json();
-    sendData(id);
+    const data = await response.json();
+    if (data.id) {
+      sendData(data.id);
+    } else {
+      console.log("error", data);
+      Notiflix.Notify.failure("Something went wrong in the state of Denmark");
+    }
   }
 
   // Send Data to Wordpress with Image Id from previous functions
