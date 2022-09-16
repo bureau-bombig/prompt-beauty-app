@@ -31,12 +31,14 @@ async function postImage() {
     if (!file) {
       cleanPreview();
       error = "Please, select an image.";
+      console.log(error);
     }
 
     // Check File is an Image
     if (!isImage() && error === false) {
       cleanPreview();
       error = "Your File has to be an Image in PNG, JPG or JPEG Format.";
+      console.log(error);
     }
 
     // Check File is less than 5MB
