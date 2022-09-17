@@ -6,7 +6,7 @@ const config = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
-    // Add your plugins here
+    // add your custom plugins here
   ],
   module: {
     // Add your Modules here

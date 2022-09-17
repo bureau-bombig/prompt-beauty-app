@@ -1,6 +1,7 @@
 import Notiflix from "notiflix";
 import validator from "validator";
-import isImage from "./utils/isImage.js";
+import filetypeinfo from "magic-bytes.js";
+import readFileAsync from "./utils/readFileAsync.js";
 
 async function postImage() {
   const image = document.querySelector("#bb_image");
@@ -17,7 +18,7 @@ async function postImage() {
   const submit = document.querySelector("#bb_submit");
 
   // Validate Image Input and if okay render Preview
-  image.addEventListener("change", (event) => {
+  image.addEventListener("change", async (event) => {
     const file = event.target.files[0];
 
     function cleanPreview() {
@@ -34,18 +35,27 @@ async function postImage() {
       console.log(error);
     }
 
-    console.log("error before isImage()", error);
-    console.log("file before isImage()", file);
-    console.log("isImage(file)", isImage(file));
-
     // Check File is an Image
-    if (!isImage(file) && error === false) {
-      cleanPreview();
-      error = "Your File has to be an Image in PNG, JPG or JPEG Format.";
-      console.log(error);
+    if (file && !error) {
+      const fileReader = new FileReader();
+      const buffer = await readFileAsync(event.target.files[0]);
+      const bytes = new Uint8Array(buffer);
+      const type = filetypeinfo(bytes);
+      const isImage = type[0].typename === "jpg" || type[0].typename === "png";
+      if (!isImage) {
+        cleanPreview();
+        error = "Your File has to be an Image in PNG or JPG Format.";
+        console.log(error);
+      }
     }
 
     // Check File is less than 5MB
+    if (file && file.size > 5242880 && !error) {
+      cleanPreview();
+      image.value = null;
+      error = "Your File has to be less than 5mb.";
+      console.log(error);
+    }
 
     if (error) {
       imageError.textContent = error;
@@ -62,13 +72,48 @@ async function postImage() {
 
   submit.addEventListener("click", uploadImage);
 
-  //title.addEventListener("change", validateForm);
-  //titleIsPrompt.addEventListener("change", validateForm);
-  //model.addEventListener("change", validateForm);
-  //description.addEventListener("change", validateForm);
+  title.addEventListener("change", (event) => {
+    const value = event.target.value;
+    if (validator.isEmpty(value)) {
+      titleError.textContent = "Please enter a title.";
+    } else {
+      titleError.textContent = "";
+    }
+  });
+
+  model.addEventListener("change", (event) => {
+    const value = event.target.value;
+    if (value === "none") {
+      modelError.textContent = "Please enter a model.";
+    } else {
+      modelError.textContent = "";
+    }
+  });
+
+  description.addEventListener("change", (event) => {
+    const value = event.target.value;
+    if (!validator.isLength(value, { min: 0, max: 1000 })) {
+      descriptionError.textContent = "Your description has to be less than 1000 characters.";
+    } else {
+      descriptionError.textContent = "";
+    }
+  });
 
   // Upload Image to Wordpress
   async function uploadImage() {
+    // Bad Idea to validate like this
+    const errorElements = document.querySelectorAll("[id^='bb_error']");
+
+    for (let i = 0; i < errorElements.length; i++) {
+      if (!validator.isEmpty(errorElements[i].textContent)) {
+        console.log(errorElements[i]);
+        console.log(errorElements[i].textContent);
+        console.log(errorElements[i].textContent.length);
+        Notiflix.Notify.failure(errorElements[i].textContent);
+        return;
+      }
+    }
+
     const formData = new FormData();
     formData.append("file", image.files[0]);
     formData.append("status", "publish");

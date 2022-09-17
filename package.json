@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "webpack --config webpack.config.js"
+    "start": "webpack --watch --mode development -o c:/xampp/htdocs/",
+    "build": "webpack --config webpack.config.js --mode production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "magic-bytes.js": "^1.0.12",
     "notiflix": "^3.2.5",
     "validator": "^13.7.0",
     "webpack": "^5.74.0"
