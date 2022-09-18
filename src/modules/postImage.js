@@ -123,8 +123,8 @@ async function postImage() {
     const formData = new FormData();
     const imageFile = image.files[0];
     const imageTitle = title.value.length > 120 ? title.value.substring(0, 120) : title.value;
-
-    formData.append("file", imageFile, imageTitle);
+    const extension = imageFile.name.substr(imageFile.name.lastIndexOf(".") + 1);
+    formData.append("file", imageFile, imageTitle + extension);
     formData.append("status", "publish");
     formData.append("title", title.value);
 
