@@ -1,6 +1,6 @@
-import Notiflix from "notiflix";
-import validator from "validator";
-import filetypeinfo from "magic-bytes.js";
+// import Notiflix from "notiflix";
+// import validator from "validator";
+//import filetypeinfo from "magic-bytes.js";
 import readFileAsync from "./utils/readFileAsync.js";
 
 async function postImage() {
@@ -37,6 +37,7 @@ async function postImage() {
 
     // Check File is an Image
     if (file && !error) {
+      const { filetypeinfo } = await import(/* webpackChunkName: "magic-bytes.js" */ "magic-bytes.js");
       const fileReader = new FileReader();
       const buffer = await readFileAsync(event.target.files[0]);
       const bytes = new Uint8Array(buffer);
@@ -72,7 +73,8 @@ async function postImage() {
 
   submit.addEventListener("click", uploadImage);
 
-  title.addEventListener("change", (event) => {
+  title.addEventListener("change", async (event) => {
+    const { validator } = await import(/* webpackChunkName: "validator" */ "validator");
     const value = event.target.value;
     if (validator.isEmpty(value)) {
       titleError.textContent = "Please enter a title.";
@@ -90,7 +92,8 @@ async function postImage() {
     }
   });
 
-  description.addEventListener("change", (event) => {
+  description.addEventListener("change", async (event) => {
+    const { validator } = await import(/* webpackChunkName: "validator" */ "validator");
     const value = event.target.value;
     if (!validator.isLength(value, { min: 0, max: 1000 })) {
       descriptionError.textContent = "Your description has to be less than 1000 characters.";
@@ -101,10 +104,13 @@ async function postImage() {
 
   // Upload Image to Wordpress
   async function uploadImage() {
+    const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+
     // Bad Idea to validate like this...
     const errorElements = document.querySelectorAll("[id^='bb_error']");
 
     for (let i = 0; i < errorElements.length; i++) {
+      const { validator } = await import(/* webpackChunkName: "validator" */ "validator");
       if (!validator.isEmpty(errorElements[i].textContent)) {
         console.log(errorElements[i]);
         console.log(errorElements[i].textContent);

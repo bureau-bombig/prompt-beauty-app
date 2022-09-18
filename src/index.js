@@ -1,21 +1,11 @@
 // Import Third Party Packages
-import Notiflix from "notiflix";
+// import Notiflix from "notiflix";
 
 // Import Custom Modules
 import postImage from "./modules/postImage.js";
 import postResource from "./modules/postResource.js";
 import likePost from "./modules/likePost.js";
 import convertMarkdown from "./modules/convertMarkdown.js";
-
-// Define Settings
-Notiflix.Notify.init({
-  distance: "20px",
-  zindex: 999999,
-  fontFamily: "Inter",
-  useGoogleFont: false,
-  borderRadius: "10px",
-  useFontAwesome: false,
-});
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -41,3 +31,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // Convert Markdown to html
   convertMarkdown();
 });
+
+// Define Settings
+
+async function notiflixSetting() {
+  const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+  Notiflix.Notify.init({
+    distance: "20px",
+    zindex: 999999,
+    fontFamily: "Inter",
+    useGoogleFont: false,
+    borderRadius: "10px",
+    useFontAwesome: false,
+  });
+}
+
+notiflixSetting();

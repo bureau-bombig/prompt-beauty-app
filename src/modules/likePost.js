@@ -1,5 +1,3 @@
-import Notiflix from "notiflix";
-
 async function likePost() {
   const bbLikeButton = document.querySelector("#bbLikeButton");
   const bbLikeCounter = document.querySelector("#bbLikeCounter");
@@ -31,6 +29,8 @@ async function likePost() {
 
   // Add Event Listener to Like Button
   bbLikeButton.addEventListener("click", async (event) => {
+    const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+
     const url = wp_api_settings.root + "promptbeauty/v1/like/";
     const request = {
       method: "POST",
