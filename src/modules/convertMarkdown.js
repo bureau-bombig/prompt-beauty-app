@@ -3,7 +3,10 @@
 
 async function convertMarkdown() {
   const { marked } = await import(/* webpackChunkName: "marked" */ "marked");
-  const dompurify = await import(/* webpackChunkName: "dompurify" */ "dompurify");
+  const DOMPurify = await import(/* webpackChunkName: "dompurify" */ "dompurify");
+
+  console.log("marked", marked);
+  console.log("DOMPurify", DOMPurify);
 
   const markdowns = document.querySelectorAll(".bb_markdown_content span");
   if (!markdowns) {
@@ -11,7 +14,7 @@ async function convertMarkdown() {
   }
   markdowns.forEach((markdown) => {
     const html = marked(markdown.textContent);
-    markdown.innerHTML = dompurify.sanitize(html);
+    markdown.innerHTML = DOMPurify.sanitize(html);
   });
 }
 
