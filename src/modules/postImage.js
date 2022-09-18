@@ -112,9 +112,6 @@ async function postImage() {
     for (let i = 0; i < errorElements.length; i++) {
       const { default: validator } = await import(/* webpackChunkName: "validator" */ "validator");
       if (!validator.isEmpty(errorElements[i].textContent)) {
-        console.log(errorElements[i]);
-        console.log(errorElements[i].textContent);
-        console.log(errorElements[i].textContent.length);
         Notiflix.Notify.failure(errorElements[i].textContent);
         return;
       }
