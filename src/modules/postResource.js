@@ -4,7 +4,6 @@
 async function postResource() {
   // Set Condition Easy MDE load after click on On Page Resource
   const { default: EasyMDE } = await import(/* webpackChunkName: "easymde" */ "easymde");
-  console.log(EasyMDE);
   const { default: Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
   const editor = new EasyMDE({
     element: document.getElementById("bb_easymde_editor"),
