@@ -101,7 +101,7 @@ async function postImage() {
 
   // Upload Image to Wordpress
   async function uploadImage() {
-    // Bad Idea to validate like this
+    // Bad Idea to validate like this...
     const errorElements = document.querySelectorAll("[id^='bb_error']");
 
     for (let i = 0; i < errorElements.length; i++) {
