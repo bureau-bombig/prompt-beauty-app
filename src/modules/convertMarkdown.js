@@ -3,7 +3,7 @@
 
 async function convertMarkdown() {
   const { marked } = await import(/* webpackChunkName: "marked" */ "marked");
-  const DOMPurify = await import(/* webpackChunkName: "dompurify" */ "dompurify");
+  const { default: DOMPurify } = await import(/* webpackChunkName: "dompurify" */ "dompurify");
 
   console.log("marked", marked);
   console.log("DOMPurify", DOMPurify);
