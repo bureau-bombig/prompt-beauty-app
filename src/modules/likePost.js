@@ -1,3 +1,5 @@
+import Notiflix from "notiflix";
+
 async function likePost() {
   const bbLikeButton = document.querySelector("#bbLikeButton");
   const bbLikeCounter = document.querySelector("#bbLikeCounter");
