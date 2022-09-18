@@ -24,8 +24,8 @@ async function likePost() {
     },
   };
   const response = await fetch(url, request);
-  const hasLiked = await response.text();
-  if (hasLiked) {
+  const data = await response.json();
+  if (data.userHasLiked) {
     bbLikeCounterWrapper.classList.add("bb-is-liked");
   }
 
@@ -58,5 +58,5 @@ async function likePost() {
     Notiflix.Notify.failure("Something is Rotten in the State of Denmark");
   });
 }
-
+likePost();
 export default likePost;
