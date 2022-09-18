@@ -104,7 +104,7 @@ async function postImage() {
 
   // Upload Image to Wordpress
   async function uploadImage() {
-    const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+    const { default: Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
 
     // Bad Idea to validate like this...
     const errorElements = document.querySelectorAll("[id^='bb_error']");

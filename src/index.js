@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 // Define Settings
 
 async function notiflixSetting() {
-  const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+  const { default: Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
   Notiflix.Notify.init({
     distance: "20px",
     zindex: 999999,

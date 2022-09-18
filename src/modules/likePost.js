@@ -29,7 +29,7 @@ async function likePost() {
 
   // Add Event Listener to Like Button
   bbLikeButton.addEventListener("click", async (event) => {
-    const { Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
+    const { default: Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
 
     const url = wp_api_settings.root + "promptbeauty/v1/like/";
     const request = {
