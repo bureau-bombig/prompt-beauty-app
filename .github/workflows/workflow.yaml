@@ -18,6 +18,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: dist/
+          server-dir: wp-content/app/
 # name: FTP Test
 # on:
 #   push:
