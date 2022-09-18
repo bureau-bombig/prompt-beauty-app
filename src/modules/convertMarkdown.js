@@ -1,7 +1,9 @@
-import { marked } from "marked";
-import { sanitize } from "dompurify";
+// import { marked } from "marked";
+// import { sanitize } from "dompurify";
 
-function convertMarkdown() {
+async function convertMarkdown() {
+  const { default: marked } = await import("marked");
+  const { default: sanitize } = await import("dompurify");
   const markdowns = document.querySelectorAll(".bb_markdown_content span");
   if (!markdowns) {
     return;
