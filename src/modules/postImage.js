@@ -121,9 +121,10 @@ async function postImage() {
     }
 
     const formData = new FormData();
-    console.log(image.files[0]);
-    const blob = image.files[0].slice(0, image.size);
-    const renamed = new File([blob], `testname`, { type: `${image.files[0].type}`, size: `${image.files[0].size}` });
+    const imageFile = image.files[0];
+    console.log(imageFile);
+    const blob = imageFile.slice(0, imageFile.size);
+    const renamed = new File([blob], `testname`, { type: `${imageFile.type}` });
     console.log(renamed);
     formData.append("file", image.files[0]);
     formData.append("status", "publish");
