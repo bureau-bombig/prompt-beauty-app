@@ -124,7 +124,7 @@ async function postImage() {
     const imageFile = image.files[0];
     const imageTitle = title.value.length > 120 ? title.value.substring(0, 120) : title.value;
     const extension = imageFile.name.substr(imageFile.name.lastIndexOf(".") + 1);
-    formData.append("file", imageFile, imageTitle + extension);
+    formData.append("file", imageFile, imageTitle + "." + extension);
     formData.append("status", "publish");
     formData.append("title", title.value);
 
