@@ -4,6 +4,7 @@ import Notiflix from "notiflix";
 // Import Custom Modules
 import postImage from "./modules/postImage.js";
 import postResource from "./modules/postResource.js";
+import likePost from "./modules/likePost.js";
 
 // Define Settings
 Notiflix.Notify.init({
@@ -32,4 +33,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (top.location.pathname.toString() === "/post-resource/") {
     postResource();
   }
+
+  // Like Post Logic
+  likePost();
 });
