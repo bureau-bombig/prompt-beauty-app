@@ -5,6 +5,7 @@ import Notiflix from "notiflix";
 import postImage from "./modules/postImage.js";
 import postResource from "./modules/postResource.js";
 import likePost from "./modules/likePost.js";
+import convertMarkdown from "./modules/convertMarkdown.js";
 
 // Define Settings
 Notiflix.Notify.init({
@@ -36,4 +37,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   // Like Post Logic
   likePost();
+
+  // Convert Markdown to html
+  convertMarkdown();
 });

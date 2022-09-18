@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dompurify": "^2.4.0",
     "magic-bytes.js": "^1.0.12",
+    "marked": "^4.1.0",
     "notiflix": "^3.2.5",
     "validator": "^13.7.0",
     "webpack": "^5.74.0"
