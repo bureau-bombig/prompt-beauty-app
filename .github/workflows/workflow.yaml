@@ -19,6 +19,7 @@ jobs:
           port: 21
           local-dir: dist/
           server-dir: wp-content/app/
+          dangerous-clean-slate: true
 # name: FTP Test
 # on:
 #   push:
