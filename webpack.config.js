@@ -1,13 +1,12 @@
 const path = require("path");
 
-const config = {
+module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
-  plugins: [
-    // add your custom plugins here
-  ],
+  plugins: [],
   module: {
     // Add your Modules here
   },
