@@ -2,7 +2,7 @@
 // import { sanitize } from "dompurify";
 
 async function convertMarkdown() {
-  const marked = await import(/* webpackChunkName: "marked" */ "marked");
+  const { marked } = await import(/* webpackChunkName: "marked" */ "marked");
   const dompurify = await import(/* webpackChunkName: "dompurify" */ "dompurify");
 
   const markdowns = document.querySelectorAll(".bb_markdown_content span");
