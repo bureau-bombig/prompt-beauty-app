@@ -121,6 +121,7 @@ async function postImage() {
     }
 
     const formData = new FormData();
+    console.log(image);
     formData.append("file", image.files[0]);
     formData.append("status", "publish");
     formData.append("title", title.value);
