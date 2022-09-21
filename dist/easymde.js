@@ -1,1 +1,1 @@
-(self.webpackChunkprompt_beauty_app=self.webpackChunkprompt_beauty_app||[]).push([[30],{2562:()=>{}}]);
+(self.webpackChunkprompt_beauty_app=self.webpackChunkprompt_beauty_app||[]).push([[30],{562:()=>{}}]);
