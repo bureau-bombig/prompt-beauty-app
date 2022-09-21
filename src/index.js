@@ -2,16 +2,17 @@
 // import Notiflix from "notiflix";
 
 // Import Custom Modules
-import postImage from "./modules/postImage.js";
+//import postImage from "./modules/postImage.js";
 import postResource from "./modules/postResource.js";
 import likePost from "./modules/likePost.js";
 import convertMarkdown from "./modules/convertMarkdown.js";
+import natify from "natify";
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
   // Post Image Script
   if (top.location.pathname.toString() === "/post-image/") {
-    postImage();
+    //postImage();
   }
 
   // Edit Image Script
@@ -30,6 +31,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   // Convert Markdown to html
   convertMarkdown();
+
+  // Form Validation
+  natify({
+    selector: ".bb-form",
+    successColor: "#00ff00",
+    errorColor: "#ff0000",
+    successIcon: "✔",
+    errorIcon: "🞭",
+    fontSize: "15px",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    preventDefault: true,
+    formSubmit: false,
+    onSubmit: true,
+  });
 });
 
 // Define Settings

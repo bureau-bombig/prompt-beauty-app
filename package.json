@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "webpack --watch --mode development -o c:/xampp/htdocs/",
+    "start": "webpack --watch --mode development -o C:/xampp/htdocs/wp-content/app",
     "build": "webpack --config webpack.config.js --mode production"
   },
   "author": "",
@@ -14,6 +14,7 @@
     "easymde": "^2.17.0",
     "magic-bytes.js": "^1.0.12",
     "marked": "^4.1.0",
+    "natify": "^0.0.3",
     "notiflix": "^3.2.5",
     "validator": "^13.7.0"
   },
