@@ -48,7 +48,7 @@ async function postImage() {
 
     // Required
     formData.title = title.value;
-    formData.featured_image = id;
+    formData.featured_media = id;
     formData.status = "publish";
     const acf = {
       titleIsPrompt: titleIsPrompt.checked,
