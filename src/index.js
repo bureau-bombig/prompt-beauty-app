@@ -33,7 +33,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   convertMarkdown();
 
   // Form Validation
-  natify({ selector: ".bb-form" });
+  const form = natify({ selector: ".bb-form" });
+  console.log(form);
 });
 
 // Define Settings
