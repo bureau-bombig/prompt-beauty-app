@@ -44,12 +44,12 @@ async function postImage() {
   async function publishPost(id) {
     const url = wp_api_settings.root + "wp/v2/images/";
 
-    const formData = new FormData();
+    const formData = {};
 
     // Required
-    formData.append("title", title.value);
-    formData.append("featured_media", id);
-    formData.append("status", "publish");
+    formData.title = title.value;
+    formData.featured_image = id;
+    formData.status = "publish";
     const acf = {
       titleIsPrompt: titleIsPrompt.checked,
       model: model.value,
@@ -64,7 +64,8 @@ async function postImage() {
     if (pdSteps.value) acf.prompt_details_steps = pdSteps.value;
     if (pdGuidanceScale.value) acf.prompt_details_guidance_scale = pdGuidanceScale.value;
     if (pdSampler.value) acf.prompt_details_sampler = pdSampler.value;
-    formData.append("acf", acf);
+
+    formData.acf = acf;
 
     console.log("formdata: ", formData);
     console.log("stringify:", JSON.stringify(formData));
