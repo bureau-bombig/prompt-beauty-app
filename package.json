@@ -14,7 +14,7 @@
     "easymde": "^2.17.0",
     "magic-bytes.js": "^1.0.12",
     "marked": "^4.1.0",
-    "natify": "^0.0.3",
+    "natify": "^0.1.1",
     "notiflix": "^3.2.5",
     "validator": "^13.7.0"
   },
