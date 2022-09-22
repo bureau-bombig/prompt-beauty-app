@@ -35,7 +35,7 @@ async function postImage() {
     const imageUpload = await uploadImage();
     const postPublish = await publishPost(imageUpload.id);
     if (imageUpload && postPublish) {
-      window.location.href = postPublish.link;
+      // window.location.href = postPublish.link;
     } else {
       Notiflix.Notify.failure("Something is Rotten in the State of Denmark!");
     }
@@ -64,8 +64,11 @@ async function postImage() {
     if (pdSteps.value) acf.prompt_details_steps = pdSteps.value;
     if (pdGuidanceScale.value) acf.prompt_details_guidance_scale = pdGuidanceScale.value;
     if (pdSampler.value) acf.prompt_details_sampler = pdSampler.value;
-
     formData.append("acf", acf);
+
+    console.log(formData);
+    console.log(JSON.stringify(formData));
+
     const request = {
       method: "POST",
       mode: "cors",
