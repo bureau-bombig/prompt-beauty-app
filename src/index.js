@@ -2,17 +2,16 @@
 // import Notiflix from "notiflix";
 
 // Import Custom Modules
-//import postImage from "./modules/postImage.js";
-import postResource from "./modules/postResource.js";
-import likePost from "./modules/likePost.js";
-import convertMarkdown from "./modules/convertMarkdown.js";
-import natify from "natify";
+import postImage from "./modules/postImage";
+import postResource from "./modules/postResource";
+import likePost from "./modules/likePost";
+import convertMarkdown from "./modules/convertMarkdown";
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
   // Post Image Script
   if (top.location.pathname.toString() === "/post-image/") {
-    //postImage();
+    postImage();
   }
 
   // Edit Image Script
@@ -31,10 +30,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   // Convert Markdown to html
   convertMarkdown();
-
-  // Form Validation
-  const form = natify({ selector: ".bb-form" });
-  console.log(form);
 });
 
 // Define Settings
