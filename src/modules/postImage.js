@@ -5,6 +5,7 @@ async function postImage() {
   // Form Validation
   const form = natify({ selector: ".bb-form" }).container;
   const submit = form.querySelector("#bb_submit");
+  const file = form.querySelector("#bb_image");
   const title = form.querySelector("#bb_title");
   const titleIsPrompt = form.querySelector("#bb_title_is_prompt");
   const model = form.querySelector("#bb_model");
@@ -16,6 +17,25 @@ async function postImage() {
   const pdSteps = form.querySelector("#bb_prompt_details_steps");
   const pdGuidanceScale = form.querySelector("#bb_prompt_details_guidance_scale");
   const pdSampler = form.querySelector("#bb_prompt_details_sampler");
+  let isSending = false;
+  const loader =
+    '<svg viewBox="-25 -25 100 100" width="100px" height="25px" preserveAspectRatio="" style=" height: 14px;"><circle fill="#fff" stroke="none" cx="0" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15" repeatCount="indefinite" begin="0.1"></animateTransform> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"></animate> </circle> <circle fill="#fff" stroke="none" cx="80" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10" repeatCount="indefinite" begin="0.2"></animateTransform> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"></animate> </circle> <circle fill="#fff" stroke="none" cx="160" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.3"></animateTransform><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"></animate> </circle></svg>';
+
+  // Image Preview
+  file.addEventListener("change", (event) => {
+    if (file.checkValidityAll()) {
+      const url = URL.createObjectURL(event.target.files[0]);
+      const preview = document.createElement("img");
+      preview.src = url;
+      preview.classList.add("bb-image-preview");
+      preview.alt = "image preview";
+      console.log(preview);
+      file.after(preview);
+    } else {
+      const preview = document.querySelector(".bb-image-preview");
+      preview.remove();
+    }
+  });
 
   // Title is Prompt
   function setPdPrompt() {
@@ -29,9 +49,15 @@ async function postImage() {
   title.addEventListener("input", setPdPrompt);
 
   submit.addEventListener("click", async (e) => {
-    if (!form.checkValidityAll()) {
+    if (!form.checkValidityAll() || isSending) {
       return;
     }
+
+    isSending = true;
+    submit.disabled = true;
+    submit.innerHTML = loader;
+    console.log("sending...");
+
     const imageUpload = await uploadImage();
     const postPublish = await publishPost(imageUpload.id);
     if (imageUpload && postPublish) {
@@ -39,6 +65,10 @@ async function postImage() {
     } else {
       Notiflix.Notify.failure("Something is Rotten in the State of Denmark!");
     }
+
+    isSending = false;
+    submit.disabled = false;
+    submit.innerHTML = "Submit";
   });
 
   async function publishPost(id) {
@@ -90,9 +120,8 @@ async function postImage() {
   }
 
   async function uploadImage() {
-    const title = form.querySelector("#bb_title").value;
+    const imageFile = file.files[0];
     const formData = new FormData();
-    const imageFile = form.querySelector("#bb_image").files[0];
     const extension = imageFile.name.substr(imageFile.name.lastIndexOf(".") + 1);
     formData.append("file", imageFile, title + "." + extension);
     formData.append("status", "publish");
