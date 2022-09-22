@@ -51,7 +51,7 @@ async function postImage() {
     formData.featured_media = id;
     formData.status = "publish";
     const acf = {
-      titleIsPrompt: titleIsPrompt.checked,
+      title_is_prompt: titleIsPrompt.checked,
       model: model.value,
     };
 
