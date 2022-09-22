@@ -30,6 +30,7 @@ async function postImage() {
 
   submit.addEventListener("click", async (e) => {
     if (!form.checkValidityAll()) {
+      console.log("Form is not valid");
       return;
     }
     const imageUpload = await uploadImage();
@@ -66,9 +67,6 @@ async function postImage() {
     if (pdSampler.value) acf.prompt_details_sampler = pdSampler.value;
 
     formData.acf = acf;
-
-    console.log("formdata: ", formData);
-    console.log("stringify:", JSON.stringify(formData));
 
     const request = {
       method: "POST",
