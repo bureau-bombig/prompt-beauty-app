@@ -66,8 +66,8 @@ async function postImage() {
     if (pdSampler.value) acf.prompt_details_sampler = pdSampler.value;
     formData.append("acf", acf);
 
-    console.log(formData);
-    console.log(JSON.stringify(formData));
+    console.log("formdata: ", formData);
+    console.log("stringify:", JSON.stringify(formData));
 
     const request = {
       method: "POST",
