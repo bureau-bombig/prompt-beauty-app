@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "webpack --watch --mode development -o C:/xampp/htdocs/wp-content/app",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode development"
   },
   "author": "",
   "license": "ISC",
