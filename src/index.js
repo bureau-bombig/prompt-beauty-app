@@ -33,19 +33,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   convertMarkdown();
 
   // Form Validation
-  natify({
-    selector: ".bb-form",
-    successColor: "#00ff00",
-    errorColor: "#ff0000",
-    successIcon: "✔",
-    errorIcon: "🞭",
-    fontSize: "15px",
-    borderWidth: "2px",
-    borderStyle: "solid",
-    preventDefault: true,
-    formSubmit: false,
-    onSubmit: true,
-  });
+  natify({ selector: ".bb-form" });
 });
 
 // Define Settings
