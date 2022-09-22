@@ -30,13 +30,12 @@ async function postImage() {
 
   submit.addEventListener("click", async (e) => {
     if (!form.checkValidityAll()) {
-      console.log("Form is not valid");
       return;
     }
     const imageUpload = await uploadImage();
     const postPublish = await publishPost(imageUpload.id);
     if (imageUpload && postPublish) {
-      // window.location.href = postPublish.link;
+      window.location.href = postPublish.link;
     } else {
       Notiflix.Notify.failure("Something is Rotten in the State of Denmark!");
     }
