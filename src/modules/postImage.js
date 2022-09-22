@@ -43,25 +43,29 @@ async function postImage() {
 
   async function publishPost(id) {
     const url = wp_api_settings.root + "wp/v2/images/";
-    const formData = {
-      // Formdata
-      title: title.value,
-      featured_media: id,
-      acf: {
-        title_is_prompt: titleIsPrompt.checked,
-        model: model.value,
-        description: description.value,
-        prompt_details_prompt: pdPrompt.value,
-        prompt_details_seed: pdSeed.value,
-        prompt_details_width: pdWidth.value,
-        prompt_details_height: pdHeight.value,
-        prompt_details_steps: pdSteps.value,
-        prompt_details_guidance_scale: pdGuidanceScale.value,
-        prompt_details_sampler: pdSampler.value,
-      },
-      // General
-      status: "publish",
+
+    const formData = new FormData();
+
+    // Required
+    formData.append("title", title.value);
+    formData.append("featured_media", id);
+    formData.append("status", "publish");
+    const acf = {
+      titleIsPrompt: titleIsPrompt.checked,
+      model: model.value,
     };
+
+    // Optional
+    if (description.value) acf.description = description.value;
+    if (pdPrompt.value) acf.prompt_details_prompt = pdPrompt.value;
+    if (pdSeed.value) acf.prompt_details_seed = pdSeed.value;
+    if (pdWidth.value) acf.prompt_details_width = pdWidth.value;
+    if (pdHeight.value) acf.prompt_details_height = pdHeight.value;
+    if (pdSteps.value) acf.prompt_details_steps = pdSteps.value;
+    if (pdGuidanceScale.value) acf.prompt_details_guidance_scale = pdGuidanceScale.value;
+    if (pdSampler.value) acf.prompt_details_sampler = pdSampler.value;
+
+    formData.append("acf", acf);
     const request = {
       method: "POST",
       mode: "cors",
