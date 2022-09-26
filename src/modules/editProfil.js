@@ -44,8 +44,8 @@ async function editProfile() {
 
   async function saveProfile() {
     if (!form.checkValidityAll() || isSending) {
-      console.log(form.checkValidityAll());
-      console.log(isSending);
+      console.log("form.checkValidityAll", form.checkValidityAll());
+      console.log("isSending", isSending);
       console.log("not valid");
       return;
     }
