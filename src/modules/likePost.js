@@ -8,6 +8,8 @@ async function likePost() {
     return;
   }
 
+  console.log(wp_api_settings);
+
   // Check there is a user nonce
   if (!wp_api_settings.nonce) {
     return;
