@@ -23,16 +23,17 @@ async function postImage() {
   // Image Preview
   file.addEventListener("change", (event) => {
     if (file.checkValidityAll()) {
+      const oldPreview = document.querySelector(".bb-image-preview");
+      if (oldPreview) oldPreview.remove();
       const url = URL.createObjectURL(event.target.files[0]);
       const preview = document.createElement("img");
       preview.src = url;
       preview.classList.add("bb-image-preview");
       preview.alt = "image preview";
-      console.log(preview);
       file.after(preview);
     } else {
-      const preview = document.querySelector(".bb-image-preview");
-      preview.remove();
+      const oldPreview = document.querySelector(".bb-image-preview");
+      if (oldPreview) oldPreview.remove();
     }
   });
 
