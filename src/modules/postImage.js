@@ -1,5 +1,6 @@
 import Notiflix from "notiflix";
 import natify from "natify";
+import loader from "../modules/utils/loader.js";
 
 async function postImage() {
   // Form Validation
@@ -18,8 +19,6 @@ async function postImage() {
   const pdGuidanceScale = form.querySelector("#bb_prompt_details_guidance_scale");
   const pdSampler = form.querySelector("#bb_prompt_details_sampler");
   let isSending = false;
-  const loader =
-    '<svg viewBox="-25 -25 100 100" width="100px" height="25px" preserveAspectRatio="" style=" height: 14px;"><circle fill="#fff" stroke="none" cx="0" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15" repeatCount="indefinite" begin="0.1"></animateTransform> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"></animate> </circle> <circle fill="#fff" stroke="none" cx="80" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10" repeatCount="indefinite" begin="0.2"></animateTransform> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"></animate> </circle> <circle fill="#fff" stroke="none" cx="160" cy="25" r="30"> <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.3"></animateTransform><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"></animate> </circle></svg>';
 
   // Image Preview
   file.addEventListener("change", (event) => {

@@ -6,12 +6,17 @@ import postImage from "./modules/postImage";
 import postResource from "./modules/postResource";
 import likePost from "./modules/likePost";
 import convertMarkdown from "./modules/convertMarkdown";
+import editProfil from "./modules/editProfil";
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
   // Post Image Script
   if (top.location.pathname.toString() === "/post-image/") {
     postImage();
+  }
+
+  if (top.location.pathname.toString() === "/edit-profile/") {
+    editProfil();
   }
 
   // Edit Image Script
