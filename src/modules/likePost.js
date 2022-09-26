@@ -31,6 +31,10 @@ async function likePost() {
   bbLikeButton.addEventListener("click", async (event) => {
     const { default: Notiflix } = await import(/* webpackChunkName: "notiflix" */ "notiflix");
 
+    if (!wp_api_settings.nonce) {
+      Notiflix.Notify.failure("Liking is only available for logged in users.");
+    }
+
     const url = wp_api_settings.root + "promptbeauty/v1/like/";
     const request = {
       method: "POST",
