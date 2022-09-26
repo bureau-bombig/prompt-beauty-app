@@ -43,18 +43,13 @@ async function editProfile() {
   submit.addEventListener("click", saveProfile);
 
   async function saveProfile() {
-    console.log(natifyForm);
     if (!form.checkValidityAll() || isSending) {
-      console.log("form.checkValidityAll", form.checkValidityAll());
-      console.log("isSending", isSending);
-      console.log("not valid");
       return;
     }
 
     isSending = true;
     submit.disabled = true;
     submit.innerHTML = loader;
-    console.log("sending...");
 
     const url = wp_api_settings.root + "wp/v2/users/me";
     const formData = {};
