@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     editProfil();
   }
 
-  if (top.location.pathname.toString() === "/images/") {
+  if (top.location.pathname.toString().includes("/images/")) {
     updateViewMeta();
   }
 
