@@ -43,6 +43,7 @@ async function editProfile() {
   submit.addEventListener("click", saveProfile);
 
   async function saveProfile() {
+    console.log(natifyForm);
     if (!form.checkValidityAll() || isSending) {
       console.log("form.checkValidityAll", form.checkValidityAll());
       console.log("isSending", isSending);
