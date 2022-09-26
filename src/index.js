@@ -7,6 +7,7 @@ import postResource from "./modules/postResource";
 import likePost from "./modules/likePost";
 import convertMarkdown from "./modules/convertMarkdown";
 import editProfil from "./modules/editProfil";
+import updateViewMeta from "./modules/updateViewMeta";
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -19,10 +20,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     editProfil();
   }
 
-  // Edit Image Script
-  // ...
+  if (top.location.pathname.toString() === "/images/") {
+    updateViewMeta();
+  }
 
-  // Edit Profile Script
+  // Edit Image Script
   // ...
 
   // Post Resource Script
