@@ -33,6 +33,7 @@ async function likePost() {
 
     if (!wp_api_settings.nonce) {
       Notiflix.Notify.failure("Liking is only available for logged in users.");
+      return;
     }
 
     const url = wp_api_settings.root + "promptbeauty/v1/like/";
