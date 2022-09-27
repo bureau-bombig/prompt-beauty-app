@@ -122,7 +122,7 @@ async function editImage() {
       acf.prompt_details_guidance_scale = pdGuidanceScale.value;
 
     const titleResponse = await updateImage(JSON.stringify({ title: title.value }));
-    const acfResponse = await updateImage(JSON.stringify({ acf: acf }));
+    const acfResponse = await updateImage(JSON.stringify({ meta: acf }));
 
     console.log(titleResponse);
     console.log(acfResponse);
