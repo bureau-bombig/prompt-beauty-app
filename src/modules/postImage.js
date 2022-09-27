@@ -41,8 +41,10 @@ async function postImage() {
   function setPdPrompt() {
     if (titleIsPrompt.checked) {
       pdPrompt.value = title.value;
+      pdPrompt.disabled = true;
     } else {
       pdPrompt.value = "";
+      pdPrompt.disabled = false;
     }
   }
   titleIsPrompt.addEventListener("change", setPdPrompt);
