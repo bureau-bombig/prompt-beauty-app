@@ -27,6 +27,8 @@ async function editProfile() {
   const deleteAccount = form.querySelector("#bb_delete_account");
 
   console.log("natifyForm", natifyForm);
+  console.log("form", form);
+  console.log("natifyForm.container", natifyForm.container);
   console.log("submit", submit);
   console.log("file", file);
   console.log("email", email);
