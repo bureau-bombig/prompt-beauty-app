@@ -8,6 +8,7 @@ import likePost from "./modules/likePost";
 import convertMarkdown from "./modules/convertMarkdown";
 import editProfil from "./modules/editProfil";
 import updateViewMeta from "./modules/updateViewMeta";
+import editImage from "./modules/editImage";
 
 // Run Modules on specific Sites
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -20,12 +21,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
     editProfil();
   }
 
+  // Edit Image Script
+  if (top.location.pathname.toString() === "/edit-image/") {
+    editImage();
+  }
+
   if (top.location.pathname.toString().includes("/images/")) {
     updateViewMeta();
   }
-
-  // Edit Image Script
-  // ...
 
   // Post Resource Script
   if (top.location.pathname.toString() === "/post-resource/") {
