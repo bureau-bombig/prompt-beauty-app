@@ -76,20 +76,18 @@ async function editImage() {
     const formData = {};
 
     formData.title = title.value;
-    const acf = {};
-    if (model.value != data.acf.model) acf.model = model.value;
-    if (description.value != data.acf.description) acf.description = description.value;
-    if (pdPrompt.value != data.acf.prompt_details_prompt) acf.prompt_details_prompt = pdPrompt.value;
-    if (pdSeed.value != data.acf.prompt_details_seed) acf.prompt_details_seed = pdSeed.value;
-    if (pdWidth.value != data.acf.prompt_details_width) acf.prompt_details_width = pdWidth.value;
-    if (pdHeight.value != data.acf.prompt_details_height) acf.prompt_details_height = pdHeight.value;
-    if (pdSteps.value != data.acf.prompt_details_steps) acf.prompt_details_steps = pdSteps.value;
-    if (pdSampler.value != data.acf.prompt_details_sampler) acf.prompt_details_sampler = pdSampler.value;
-    if (titleIsPrompt.checked != data.acf.title_is_prompt) acf.title_is_prompt = titleIsPrompt.checked;
+    formData.meta = {};
+    if (model.value != data.acf.model) formData.meta.model = model.value;
+    if (description.value != data.acf.description) formData.meta.description = description.value;
+    if (pdPrompt.value != data.acf.prompt_details_prompt) formData.meta.prompt_details_prompt = pdPrompt.value;
+    if (pdSeed.value != data.acf.prompt_details_seed) formData.meta.prompt_details_seed = pdSeed.value;
+    if (pdWidth.value != data.acf.prompt_details_width) formData.meta.prompt_details_width = pdWidth.value;
+    if (pdHeight.value != data.acf.prompt_details_height) formData.meta.prompt_details_height = pdHeight.value;
+    if (pdSteps.value != data.acf.prompt_details_steps) formData.meta.prompt_details_steps = pdSteps.value;
+    if (pdSampler.value != data.acf.prompt_details_sampler) formData.meta.prompt_details_sampler = pdSampler.value;
+    if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.meta.title_is_prompt = titleIsPrompt.checked;
     if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
-      acf.prompt_details_guidance_scale = pdGuidanceScale.value;
-
-    formData.acf = acf;
+      formData.meta.prompt_details_guidance_scale = pdGuidanceScale.value;
 
     const request = {
       method: "POST",
