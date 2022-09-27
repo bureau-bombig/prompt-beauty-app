@@ -26,6 +26,9 @@ async function editProfile() {
   const submit = form.querySelector("#bb_submit");
   const deleteAccount = form.querySelector("#bb_delete_account");
 
+  console.log("natifyForm", natifyForm);
+  console.log("submit", submit);
+
   let isSending = false;
   const currentImageUrl = preview.src;
 
@@ -40,7 +43,7 @@ async function editProfile() {
   });
 
   // Save Profile Changes
-  form.addEventListener("click", saveProfile);
+  submit.addEventListener("click", saveProfile);
 
   async function saveProfile() {
     if (!form.checkValidityAll() || isSending) {
