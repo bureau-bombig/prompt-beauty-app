@@ -72,23 +72,6 @@ async function editImage() {
 
     const url = wp_api_settings.root + `wp/v2/images/${postId}`;
 
-    // Create new Formdata
-    // const formData = {};
-
-    // formData.title = title.value;
-    // formData.acf = {};
-    // if (model.value != data.acf.model) formData.acf.model = model.value;
-    // if (description.value != data.acf.description) formData.acf.description = description.value;
-    // if (pdPrompt.value != data.acf.prompt_details_prompt) formData.acf.prompt_details_prompt = pdPrompt.value;
-    // if (pdSeed.value != data.acf.prompt_details_seed) formData.acf.prompt_details_seed = pdSeed.value;
-    // if (pdWidth.value != data.acf.prompt_details_width) formData.acf.prompt_details_width = pdWidth.value;
-    // if (pdHeight.value != data.acf.prompt_details_height) formData.acf.prompt_details_height = pdHeight.value;
-    // if (pdSteps.value != data.acf.prompt_details_steps) formData.acf.prompt_details_steps = pdSteps.value;
-    // if (pdSampler.value != data.acf.prompt_details_sampler) formData.acf.prompt_details_sampler = pdSampler.value;
-    // if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.acf.title_is_prompt = titleIsPrompt.checked;
-    // if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
-    //   formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
-
     // update function
     async function updateImage(body) {
       const request = {
@@ -108,27 +91,25 @@ async function editImage() {
       return await response.json();
     }
 
-    const acf = {};
-    if (model.value != data.acf.model) acf.model = model.value;
-    if (description.value != data.acf.description) acf.description = description.value;
-    if (pdPrompt.value != data.acf.prompt_details_prompt) acf.prompt_details_prompt = pdPrompt.value;
-    if (pdSeed.value != data.acf.prompt_details_seed) acf.prompt_details_seed = pdSeed.value;
-    if (pdWidth.value != data.acf.prompt_details_width) acf.prompt_details_width = pdWidth.value;
-    if (pdHeight.value != data.acf.prompt_details_height) acf.prompt_details_height = pdHeight.value;
-    if (pdSteps.value != data.acf.prompt_details_steps) acf.prompt_details_steps = pdSteps.value;
-    if (pdSampler.value != data.acf.prompt_details_sampler) acf.prompt_details_sampler = pdSampler.value;
-    if (titleIsPrompt.checked != data.acf.title_is_prompt) acf.title_is_prompt = titleIsPrompt.checked;
-    if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
-      acf.prompt_details_guidance_scale = pdGuidanceScale.value;
+    const formData = {};
+    formData.title = title.value;
+    formData.acf = {
+      model: model.value ? model.value : null,
+      description: description.value ? description.value : null,
+      prompt_details_prompt: pdPrompt.value ? pdPrompt.value : null,
+      prompt_details_seed: pdSeed.value ? pdSeed.value : null,
+      prompt_details_width: pdWidth.value ? pdWidth.value : null,
+      prompt_details_height: pdHeight.value ? pdHeight.value : null,
+      prompt_details_steps: pdSteps.value ? pdSteps.value : null,
+      prompt_details_sampler: pdSampler.value ? pdSampler.value : null,
+      title_is_prompt: titleIsPrompt.checked ? titleIsPrompt.checked : null,
+      prompt_details_guidance_scale: pdGuidanceScale.value ? pdGuidanceScale.value : null,
+    };
 
-    const titleResponse = await updateImage(JSON.stringify({ title: title.value }));
-    const acfResponse = await updateImage(JSON.stringify({ meta: acf }));
+    const response = await updateImage(JSON.stringify(formData));
 
-    console.log(titleResponse);
-    console.log(acfResponse);
-
-    if (titleResponse.link || acfResponse) {
-      //window.location.href = newImage.link;
+    if (response.link) {
+      window.location.href = response.link;
     } else {
       Notiflix.Notify.failure("Something is Rotten in the State of Denmark!");
     }
