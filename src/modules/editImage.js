@@ -88,6 +88,8 @@ async function editImage() {
     if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
       formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
 
+    console.log(formData);
+
     const request = {
       method: "POST",
       mode: "cors",
