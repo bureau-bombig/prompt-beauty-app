@@ -28,6 +28,12 @@ async function editProfile() {
 
   console.log("natifyForm", natifyForm);
   console.log("submit", submit);
+  console.log("file", file);
+  console.log("email", email);
+  console.log("bio", bio);
+  console.log("website", website);
+  console.log("instagram", instagram);
+  console.log("twitter", twitter);
 
   let isSending = false;
   const currentImageUrl = preview.src;
