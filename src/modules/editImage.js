@@ -90,7 +90,6 @@ async function editImage() {
       formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
 
     console.log(formData);
-    return;
 
     const request = {
       method: "POST",
