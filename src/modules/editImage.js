@@ -76,7 +76,7 @@ async function editImage() {
     const formData = {};
 
     formData.title = title.value;
-    acf = {};
+    const acf = {};
     if (model.value != data.acf.model) acf.model = model.value;
     if (description.value != data.acf.description) acf.description = description.value;
     if (pdPrompt.value != data.acf.prompt_details_prompt) acf.prompt_details_prompt = pdPrompt.value;
