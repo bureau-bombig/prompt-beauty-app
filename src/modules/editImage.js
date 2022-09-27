@@ -74,7 +74,7 @@ async function editImage() {
 
     // Create new Formdata
     const formData = {};
-    formData.acf = {};
+    //formData.acf = {};
     formData.title = title.value;
     // if (model.value != data.acf.model) formData.acf.model = model.value;
     // if (description.value != data.acf.description) formData.acf.description = description.value;
