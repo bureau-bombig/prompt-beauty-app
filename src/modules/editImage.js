@@ -89,8 +89,6 @@ async function editImage() {
     // if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
     //   formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
 
-    JSON.stringify(formData);
-
     // update function
     async function updateImage(body) {
       const request = {
