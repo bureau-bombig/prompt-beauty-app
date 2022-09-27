@@ -73,40 +73,64 @@ async function editImage() {
     const url = wp_api_settings.root + `wp/v2/images/${postId}`;
 
     // Create new Formdata
-    const formData = {};
+    // const formData = {};
 
-    formData.title = title.value;
-    formData.fields = {};
-    if (model.value != data.acf.model) formData.fields.model = model.value;
-    if (description.value != data.acf.description) formData.fields.description = description.value;
-    if (pdPrompt.value != data.acf.prompt_details_prompt) formData.fields.prompt_details_prompt = pdPrompt.value;
-    if (pdSeed.value != data.acf.prompt_details_seed) formData.fields.prompt_details_seed = pdSeed.value;
-    if (pdWidth.value != data.acf.prompt_details_width) formData.fields.prompt_details_width = pdWidth.value;
-    if (pdHeight.value != data.acf.prompt_details_height) formData.fields.prompt_details_height = pdHeight.value;
-    if (pdSteps.value != data.acf.prompt_details_steps) formData.fields.prompt_details_steps = pdSteps.value;
-    if (pdSampler.value != data.acf.prompt_details_sampler) formData.fields.prompt_details_sampler = pdSampler.value;
-    if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.fields.title_is_prompt = titleIsPrompt.checked;
+    // formData.title = title.value;
+    // formData.acf = {};
+    // if (model.value != data.acf.model) formData.acf.model = model.value;
+    // if (description.value != data.acf.description) formData.acf.description = description.value;
+    // if (pdPrompt.value != data.acf.prompt_details_prompt) formData.acf.prompt_details_prompt = pdPrompt.value;
+    // if (pdSeed.value != data.acf.prompt_details_seed) formData.acf.prompt_details_seed = pdSeed.value;
+    // if (pdWidth.value != data.acf.prompt_details_width) formData.acf.prompt_details_width = pdWidth.value;
+    // if (pdHeight.value != data.acf.prompt_details_height) formData.acf.prompt_details_height = pdHeight.value;
+    // if (pdSteps.value != data.acf.prompt_details_steps) formData.acf.prompt_details_steps = pdSteps.value;
+    // if (pdSampler.value != data.acf.prompt_details_sampler) formData.acf.prompt_details_sampler = pdSampler.value;
+    // if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.acf.title_is_prompt = titleIsPrompt.checked;
+    // if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
+    //   formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
+
+    JSON.stringify(formData);
+
+    // update function
+    async function updateImage(body) {
+      const request = {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "X-WP-Nonce": wp_api_settings.nonce,
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: body,
+      };
+      const response = await fetch(url, request);
+      return await response.json();
+    }
+
+    acf = {};
+    if (model.value != data.acf.model) acf.model = model.value;
+    if (description.value != data.acf.description) acf.description = description.value;
+    if (pdPrompt.value != data.acf.prompt_details_prompt) acf.prompt_details_prompt = pdPrompt.value;
+    if (pdSeed.value != data.acf.prompt_details_seed) acf.prompt_details_seed = pdSeed.value;
+    if (pdWidth.value != data.acf.prompt_details_width) acf.prompt_details_width = pdWidth.value;
+    if (pdHeight.value != data.acf.prompt_details_height) acf.prompt_details_height = pdHeight.value;
+    if (pdSteps.value != data.acf.prompt_details_steps) acf.prompt_details_steps = pdSteps.value;
+    if (pdSampler.value != data.acf.prompt_details_sampler) acf.prompt_details_sampler = pdSampler.value;
+    if (titleIsPrompt.checked != data.acf.title_is_prompt) acf.title_is_prompt = titleIsPrompt.checked;
     if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
-      formData.fields.prompt_details_guidance_scale = pdGuidanceScale.value;
+      acf.prompt_details_guidance_scale = pdGuidanceScale.value;
 
-    const request = {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        "X-WP-Nonce": wp_api_settings.nonce,
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify(formData),
-    };
-    const response = await fetch(url, request);
-    const newImage = await response.json();
+    const titleResponse = await updateImage(JSON.stringify({ title: title.value }));
+    const acfResponse = await updateImage(JSON.stringify(acf));
+
+    console.log(titleResponse);
+    console.log(acfResponse);
 
     if (newImage.link) {
-      window.location.href = newImage.link;
+      //window.location.href = newImage.link;
     } else {
       Notiflix.Notify.failure("Something is Rotten in the State of Denmark!");
     }
