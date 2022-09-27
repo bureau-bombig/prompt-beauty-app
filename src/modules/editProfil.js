@@ -40,7 +40,7 @@ async function editProfile() {
   });
 
   // Save Profile Changes
-  submit.addEventListener("click", saveProfile);
+  form.addEventListener("click", saveProfile);
 
   async function saveProfile() {
     if (!form.checkValidityAll() || isSending) {
