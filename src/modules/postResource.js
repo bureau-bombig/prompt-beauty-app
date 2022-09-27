@@ -30,8 +30,6 @@ async function postResource() {
     initialValue:
       "# EasyMDE \nGo ahead, play around with the editor! Be sure to check out **bold**, *italic* and ~~strikethrough~~ styling, [links](https://google.com) and all the other features. You can type the Markdown syntax, use the toolbar, or use shortcuts like `ctrl-b` or `cmd-b`.",
   });
-  console.log("easyMDE", editor);
-  console.log("easyMDE.value()", editor.value());
 }
 
 export default postResource;

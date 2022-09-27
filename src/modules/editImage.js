@@ -76,20 +76,18 @@ async function editImage() {
     const formData = {};
 
     formData.title = title.value;
-    formData.acf = {};
-    if (model.value != data.acf.model) formData.acf.model = model.value;
-    if (description.value != data.acf.description) formData.acf.description = description.value;
-    if (pdPrompt.value != data.acf.prompt_details_prompt) formData.acf.prompt_details_prompt = pdPrompt.value;
-    if (pdSeed.value != data.acf.prompt_details_seed) formData.acf.prompt_details_seed = pdSeed.value;
-    if (pdWidth.value != data.acf.prompt_details_width) formData.acf.prompt_details_width = pdWidth.value;
-    if (pdHeight.value != data.acf.prompt_details_height) formData.acf.prompt_details_height = pdHeight.value;
-    if (pdSteps.value != data.acf.prompt_details_steps) formData.acf.prompt_details_steps = pdSteps.value;
-    if (pdSampler.value != data.acf.prompt_details_sampler) formData.acf.prompt_details_sampler = pdSampler.value;
-    if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.acf.title_is_prompt = titleIsPrompt.checked;
+    formData.fields = {};
+    if (model.value != data.acf.model) formData.fields.model = model.value;
+    if (description.value != data.acf.description) formData.fields.description = description.value;
+    if (pdPrompt.value != data.acf.prompt_details_prompt) formData.fields.prompt_details_prompt = pdPrompt.value;
+    if (pdSeed.value != data.acf.prompt_details_seed) formData.fields.prompt_details_seed = pdSeed.value;
+    if (pdWidth.value != data.acf.prompt_details_width) formData.fields.prompt_details_width = pdWidth.value;
+    if (pdHeight.value != data.acf.prompt_details_height) formData.fields.prompt_details_height = pdHeight.value;
+    if (pdSteps.value != data.acf.prompt_details_steps) formData.fields.prompt_details_steps = pdSteps.value;
+    if (pdSampler.value != data.acf.prompt_details_sampler) formData.fields.prompt_details_sampler = pdSampler.value;
+    if (titleIsPrompt.checked != data.acf.title_is_prompt) formData.fields.title_is_prompt = titleIsPrompt.checked;
     if (pdGuidanceScale.value != data.acf.prompt_details_guidance_scale)
-      formData.acf.prompt_details_guidance_scale = pdGuidanceScale.value;
-
-    console.log(JSON.stringify(formData));
+      formData.fields.prompt_details_guidance_scale = pdGuidanceScale.value;
 
     const request = {
       method: "POST",

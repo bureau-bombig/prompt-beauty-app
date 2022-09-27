@@ -58,7 +58,6 @@ async function postImage() {
     isSending = true;
     submit.disabled = true;
     submit.innerHTML = loader;
-    console.log("sending...");
 
     const imageUpload = await uploadImage();
     const postPublish = await publishPost(imageUpload.id);
