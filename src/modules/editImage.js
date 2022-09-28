@@ -50,7 +50,6 @@ async function editImage() {
       pdPrompt.value = title.value;
       pdPrompt.disabled = true;
     } else {
-      pdPrompt.value = "";
       pdPrompt.disabled = false;
     }
   }

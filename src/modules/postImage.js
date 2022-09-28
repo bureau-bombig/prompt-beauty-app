@@ -43,13 +43,13 @@ async function postImage() {
       pdPrompt.value = title.value;
       pdPrompt.disabled = true;
     } else {
-      pdPrompt.value = "";
       pdPrompt.disabled = false;
     }
   }
   titleIsPrompt.addEventListener("change", setPdPrompt);
   title.addEventListener("input", setPdPrompt);
 
+  // Submit form
   submit.addEventListener("click", async (e) => {
     if (!form.checkValidityAll() || isSending) {
       return;
